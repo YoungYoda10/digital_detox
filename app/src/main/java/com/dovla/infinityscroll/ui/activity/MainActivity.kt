@@ -6,18 +6,18 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dovla.infinityscroll.R
+import com.dovla.infinityscroll.databinding.ActivityMainBinding
 import com.dovla.infinityscroll.ui.adapter.RecyclerViewAdapter
 
 class MainActivity : AppCompatActivity() {
-    private var recyclerView: RecyclerView? = null
+    private lateinit var binding: ActivityMainBinding
     private var recyclerViewAdapter: RecyclerViewAdapter? = null
     private var rowsArrayList: ArrayList<String?> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        recyclerView = findViewById(R.id.recyclerView)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         populateData()
         initAdapter()
         initScrollListener()
@@ -33,11 +33,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initAdapter() {
         recyclerViewAdapter = RecyclerViewAdapter(rowsArrayList)
-        recyclerView!!.adapter = recyclerViewAdapter
+        binding.recyclerView.adapter = recyclerViewAdapter
     }
 
     private fun initScrollListener() {
-        recyclerView!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager?

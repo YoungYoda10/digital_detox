@@ -38,6 +38,10 @@ android {
             outputFileName = "infinity_scroll_${variant.name}_${variant.versionName}.apk"
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
