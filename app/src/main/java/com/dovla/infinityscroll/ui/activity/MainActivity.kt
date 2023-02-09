@@ -14,8 +14,6 @@ class MainActivity : AppCompatActivity() {
     private var recyclerViewAdapter: RecyclerViewAdapter? = null
     private var rowsArrayList: ArrayList<String?> = ArrayList()
 
-    var isLoading = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,10 +41,9 @@ class MainActivity : AppCompatActivity() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager?
-                if (!isLoading) {
-                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == rowsArrayList.size - 1) {
+                linearLayoutManager?.let {
+                    if (it.findLastCompletelyVisibleItemPosition() == rowsArrayList.size - 1) {
                         loadMore()
-                        isLoading = true
                     }
                 }
             }
@@ -67,7 +64,6 @@ class MainActivity : AppCompatActivity() {
                 currentSize++
             }
             recyclerViewAdapter!!.notifyDataSetChanged()
-            isLoading = false
         }
     }
 }
