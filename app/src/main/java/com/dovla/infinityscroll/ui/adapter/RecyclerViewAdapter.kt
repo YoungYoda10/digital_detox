@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.dovla.infinityscroll.R
 import com.dovla.infinityscroll.databinding.ItemRowBinding
+import com.dovla.infinityscroll.ui.adapter.RecyclerViewAdapter.MyViewHolder
 
-class RecyclerViewAdapter(private var mItemList: List<String?>) :
-    RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
+class RecyclerViewAdapter(private var mItemList: List<String?>) : Adapter<MyViewHolder>() {
 
     class MyViewHolder(binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
 

@@ -54,11 +54,9 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager?
-                linearLayoutManager?.let {
-                    if (it.findLastCompletelyVisibleItemPosition() == rowsArrayList.size - 1) {
-                        loadMore()
-                    }
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                if (layoutManager.findLastCompletelyVisibleItemPosition() == rowsArrayList.size - 1) {
+                    loadMore()
                 }
             }
         })
