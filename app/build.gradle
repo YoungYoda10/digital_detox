@@ -35,7 +35,7 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "infinity_scroll_${variant.name}_${variant.versionName}.apk"
+            outputFileName = "digital_detox_${variant.name}_${variant.versionName}.apk"
         }
     }
 
