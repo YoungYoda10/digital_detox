@@ -10,17 +10,13 @@ import com.dovla.infinityscroll.databinding.ItemRowBinding
 class RecyclerViewAdapter(private var mItemList: List<String?>) :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val binding = ItemRowBinding.bind(itemView)
-    }
+    class MyViewHolder(binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
     ): MyViewHolder {
         return MyViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_row, parent, false
-            )
+            ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
